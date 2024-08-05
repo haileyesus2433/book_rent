@@ -18,6 +18,8 @@ model User {
   email     String   @unique
   password  String
   name      String
+  wallet    Float    @default(0)
+  approved  Boolean  @default(false)
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -26,20 +28,26 @@ model User {
 }
 
 model Book {
-  id         String   @id @default(uuid())
+  id         String     @id @default(uuid())
   title      String
   author     String
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String
+  status     BookStatus @default(AVAILABLE)
   quantity   Int
   available  Int
   price      Float
+  approved   Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  categoryId String
+  category   Category   @relation(fields: [categoryId], references: [id])
   ownerId    String
-  owner      User     @relation(fields: [ownerId], references: [id])
-  approved   Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  owner      User       @relation(fields: [ownerId], references: [id])
   rentals    Rental[]
+}
+
+enum BookStatus {
+  AVAILABLE
+  UNAVAILABLE
 }
 
 model Category {
