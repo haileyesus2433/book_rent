@@ -14,17 +14,18 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String
-  wallet    Float    @default(0)
-  approved  Boolean  @default(false)
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  books     Book[]
-  rentals   Rental[]
+  id          String   @id @default(uuid())
+  email       String   @unique
+  password    String
+  location    String
+  phoneNumber Int      @unique
+  wallet      Float    @default(0)
+  approved    Boolean  @default(false)
+  role        Role     @default(USER)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  books       Book[]
+  rentals     Rental[]
 }
 
 model Book {
