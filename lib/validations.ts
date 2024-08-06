@@ -4,8 +4,7 @@ export const UserSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
   location: z.string().min(3),
-  phoneNumber: z.number().min(10),
-  role: z.enum(["USER", "OWNER"]),
+  phoneNumber: z.string().min(10),
 });
 
 export const BookSchema = z.object({

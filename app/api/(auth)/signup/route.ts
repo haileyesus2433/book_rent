@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: validation.error }, { status: 400 });
   }
 
-  const { email, password, location, phoneNumber, role } = validation.data;
+  const { email, password, location, phoneNumber } = validation.data;
 
   const existingUserEmail = await prisma.user.findUnique({ where: { email } });
   if (existingUserEmail) {
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
   }
 
   const existingUserPhone = await prisma.user.findUnique({
-    where: { phoneNumber },
+    where: { phoneNumber: +phoneNumber },
   });
   if (existingUserPhone) {
     return NextResponse.json(
@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
       email,
       password: hashedPassword,
       location,
-      phoneNumber,
-      role,
+      phoneNumber: +phoneNumber,
+      role: 'USER',
     },
   });
 

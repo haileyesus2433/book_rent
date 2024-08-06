@@ -3,9 +3,6 @@ import { CategorySchema } from '@/lib/validations';
 import { NextRequest, NextResponse } from 'next/server';
 import { authMiddleware } from '../middleware/auth';
 
-
-
-
 export async function GET(req: NextRequest) {
   await authMiddleware(req);
   const categories = await prisma.category.findMany();

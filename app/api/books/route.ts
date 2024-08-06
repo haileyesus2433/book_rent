@@ -1,8 +1,8 @@
 import prisma from '@/lib/prisma';
 import { BookSchema } from '@/lib/validations';
+import defineAbility from '@/utils/defineAbility';
 import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
-import defineAbility from '../abilities/defineAbility';
 import { authMiddleware } from '../middleware/auth';
 
 

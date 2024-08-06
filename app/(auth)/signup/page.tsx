@@ -2,6 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import AuthLeftSide from "@/components/AuthLeftSide";
+import BookIcon from "@/components/BookIcon";
 import {
   Alert,
   Box,
@@ -19,7 +21,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import BookIcon from "../components/BookIcon";
 
 // Zod schema (same as before)
 const signUpSchema = z
@@ -64,11 +65,11 @@ export default function SignUp() {
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
-      const response = await axios.post("/api/register", {
+      const response = await axios.post("/api/signup", {
         email: data.email,
         password: data.password,
         location: data.location,
-        phone: data.phone,
+        phoneNumber: data.phone,
       });
 
       if (response.status === 201) {
@@ -101,26 +102,17 @@ export default function SignUp() {
         color: "#000"
       }}
     >
-      {/* Logo section - hidden on mobile */}
-      <Box
-        sx={{
-          flex: { xs: "none", md: 1 },
-          bgcolor: "#171B36",
-          display: { xs: "none", md: "flex" },
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <BookIcon />
-      </Box>
+      {/* Left side */}
+      <AuthLeftSide />
 
-      {/* Form section */}
+      {/* Right Side */}
       <Box
         sx={{
           flex: { xs: "auto", md: 1 },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          alignItes: "center",
           p: { xs: 2, sm: 4, md: 6 },
         }}
       >

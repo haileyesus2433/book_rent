@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma';
+import defineAbility from '@/utils/defineAbility';
 import { NextRequest, NextResponse } from 'next/server';
-import defineAbility from '../../abilities/defineAbility';
 import { authMiddleware } from '../../middleware/auth';
 
 
