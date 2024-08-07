@@ -1,9 +1,7 @@
-'use client'
+"use client";
 import Header from "@/components/Header";
 import Sidebar from "@/components/sidebar/Sidebar";
-import { useUser } from '@/context/AuthContext';
 import { Box, Container, styled } from "@mui/material";
-import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
 
 const MainWrapper = styled("div")(() => ({
@@ -27,26 +25,13 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useUser()
-  const router = useRouter()
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-
-  // useEffect(() => {
-  //   if (!loading && !user) {
-  //     router.push('/login')
-  //   }
-  // }, [user, loading, router])
-
-  // if (loading) {
-  //   return <Spinner />
-  // }
-
-  // if (!user) {
-  //   return null
-  // }
-
   return (
     <MainWrapper className="mainwrapper">
       {/* ------------------------------------------- */}
